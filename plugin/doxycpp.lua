@@ -9,7 +9,7 @@ api.nvim_create_autocmd("filetype", {
   group = group,
   callback = function()
     api.nvim_create_user_command("DoxyCpp", function()
-      doxycpp.gen_annoment()
+      doxycpp:gen_annoment()
     end, {})
   end
 })
