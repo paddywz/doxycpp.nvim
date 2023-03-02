@@ -8,7 +8,6 @@ doxycpp.__index = doxycpp
 
 function doxycpp.__newindex(table, key, val)
   if doxycpp[key] ~= nil then
-    vim.notify("can't add new key")
     return
   end
   rawset(table, key, val);
