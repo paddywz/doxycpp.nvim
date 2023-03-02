@@ -20,8 +20,8 @@ function M.annotation()
   local args = fun_dec:match('%((.+)%)')
 
   local res = {}
-  table.insert(res, "/** function " .. fun_name)
-  table.insert(res, " * @brief")
+  table.insert(res, M.prefix .. "/** function " .. fun_name)
+  table.insert(res, M.prefix .. " * @brief")
 
   local args_list = {}
   local max_arg_len = 0
@@ -43,9 +43,9 @@ function M.annotation()
   end
 
   if ret ~= 'void' then
-    table.insert(res, " * @return")
+    table.insert(res, M.prefix .. " * @return")
   end
-  table.insert(res, " */")
+  table.insert(res, M.prefix .. " */")
 
   return res
 end
