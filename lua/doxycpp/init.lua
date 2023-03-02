@@ -55,8 +55,8 @@ local function gen_comment()
   local mode = fn.mode()
   local cm_lines
   local enable_mode = { 'n', 'v', 'V', '' }
+
   if vim.tbl_contains(enable_mode, mode) ~= true then
-    vim.notify("enter ~true")
     return
   end
 
@@ -65,7 +65,13 @@ local function gen_comment()
     local lnum = fn.line('.')
     local cur_line = api.nvim_get_current_line()
     cm_lines = doxycpp.annotacomment(cur_line)
-    gen_line_comment(cm_lines, lnum, true)
+
+    if cm_lines ~= nil then
+      gen_line_comment(cm_lines, lnum, true)
+    else
+      cm_lines = vcomment(lnum, lnum)
+      gen_line_comment(cm_lines, lnum, false)
+    end
     return
   end
 
