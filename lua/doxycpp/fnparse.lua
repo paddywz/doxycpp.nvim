@@ -37,7 +37,7 @@ function M.annotation()
  
   -- set format
   local space_len = 8
-  local rep_space_len = max_arg_len + string.len(' * @param ') - string.len(' * @brief') + space_len
+  local rep_space_len = max_arg_len + string.len(' * @param ') - string.len(' * @brief ') + space_len
   table.insert(res, M.prefix .. " * @brief " .. string.rep(' ', rep_space_len))
 
   for _, v in pairs(args_list) do
