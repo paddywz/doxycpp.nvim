@@ -64,7 +64,7 @@ local function gen_comment()
   if mode == 'n' then
     local lnum = fn.line('.')
     local cur_line = api.nvim_get_current_line()
-    cm_lines = doxycpp.annotacommnet(cur_line)
+    cm_lines = doxycpp.annotacomment(cur_line)
     gen_line_comment(cm_lines, lnum, true)
     return
   end
