@@ -15,8 +15,8 @@ end
 function M.annotation()
   local res = {}
   table.insert(res, M.prefix .. '/** ' .. M.type)
-  table.insert(res, M.prefix .. '/* @brief      ')
-  table.insert(res, M.prefix .. '**/')
+  table.insert(res, M.prefix .. ' * @brief      ')
+  table.insert(res, M.prefix .. ' */')
   return res
 end
 
