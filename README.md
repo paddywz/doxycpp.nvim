@@ -1,5 +1,5 @@
 # doxycpp.nvim
-🎉🎉A sample and useful plugin to make doxygen style comment for cpp more easy.🎉🎉
+🎉🎉A sample and useful plugin to generate doxygen style annotation and comment for cpp more easy.🎉🎉
 
 ![doxycpp_one](https://user-images.githubusercontent.com/101847923/222450881-f472a55e-4c09-4a55-8798-c0b6feb98259.gif)
 
