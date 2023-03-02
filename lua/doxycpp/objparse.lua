@@ -18,3 +18,5 @@ function M.annotation()
   table.insert(res, '**/')
   return res
 end
+
+return M
