@@ -30,7 +30,6 @@ function M.annotation()
     for _, v in pairs(args_tbl) do
       v = v:gsub('^%s+', '')
       v = v:gsub('%s+$', '')
-      print(v)
       local arg = v:match(' [*]*([a-zA-Z_]+[a-zA-Z0-9]*)') or ""
       max_arg_len = #arg > max_arg_len and #arg or max_arg_len
       table.insert(args_list, M.prefix .. ' * @param ' .. arg)
@@ -39,6 +38,7 @@ function M.annotation()
 
   for _, v in pairs(args_list) do
     table.insert(res, v .. string.rep(' ', max_arg_len + 8 - #v))
+    print(string.rep(' ', max_arg_len + 8 - #v))
   end
 
   if ret ~= 'void' then
