@@ -68,9 +68,9 @@ local function gen_comment()
 
     if cm_lines ~= nil then
       gen_line_comment(cm_lines, lnum, true)
-      api.nvim_win_set_cursor(0, { lnum + 1, #api.nvim_buf_get_lines(0, lnum, lnum + 1, true)[1] + 2 })
+      api.nvim_win_set_cursor(0, { lnum + 1, #api.nvim_buf_get_lines(0, lnum, lnum + 1, true)[1] + 1 })
       print(api.nvim_buf_get_lines(0, lnum, lnum + 1, true)[1])
-      print(#api.nvim_buf_get_lines(0, lnum, lnum + 1, true)[1])
+      print(#api.nvim_buf_get_lines(0, lnum, lnum + 1, true)[1] + 1)
 
       vim.cmd('startinsert')
     else
