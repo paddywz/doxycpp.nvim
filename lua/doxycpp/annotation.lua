@@ -1,28 +1,27 @@
 local objparse = require('doxycpp.objparse')
 local fnparse = require('doxycpp.fnparse')
 
+local annotation = {}
 local M = {}
 
-local doxycpp = {}
+annotation.__index = annotation
 
-doxycpp.__index = doxycpp
-
-function doxycpp.__newindex(table, key, val)
-  if doxycpp[key] ~= nil then
+function annotation.__newindex(table, key, val)
+  if annotation[key] ~= nil then
     return
   end
   rawset(table, key, val);
 end
 
-function doxycpp:register(parse)
+function annotation:register(parse)
   if self.handler == nil then
     self.handler = {}
   end
   table.insert(self.handler, parse)
 end
 
-function doxycpp.annotacomment(line)
-  for _, p in pairs(doxycpp.handler) do
+function annotation.annotacomment(line)
+  for _, p in pairs(annotation.handler) do
     if p.match(line) == true then
       return p.annotation()
     end
@@ -30,9 +29,9 @@ function doxycpp.annotacomment(line)
 end
 
 -- parse struct class enum
-doxycpp:register(objparse)
-doxycpp:register(fnparse)
+annotation:register(objparse)
+annotation:register(fnparse)
 
-setmetatable(M, doxycpp)
+setmetatable(M, annotation)
 
 return M

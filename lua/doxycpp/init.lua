@@ -1,45 +1,8 @@
-local doxycpp = require('doxycpp.core')
 local api, fn = vim.api, vim.fn
+local anno = require('doxycpp.annotation')
+local comm = require('doxycpp.comment')
 
--- add comment
-local function add_comment(line)
-  local newline
-  local _, cur_spaces = line:find('^%s+')
-
-  if cur_spaces == nil then
-    newline = '// ' .. line
-  else
-    newline = line:sub(1, cur_spaces) .. '// ' .. line:sub(cur_spaces + 1, -1)
-  end
-  return newline
-end
-
--- cancel comment
-local function cancel_comment(line)
-  local newline = line:gsub('// ', '')
-  return newline
-end
-
--- visual comment
-local function vcomment(line_start, line_end)
-  local lines = fn.getline(line_start, line_end)
-
-  local res = {}
-  for _, v in pairs(lines) do
-    local newline = ""
-
-    if #v > 0 then
-      if v:match('// ') ~= nil then
-        newline = cancel_comment(v)
-      else
-        newline = add_comment(v)
-      end
-    end
-    table.insert(res, newline)
-  end
-
-  return res
-end
+local doxycpp = {}
 
 -- generate line comment
 local function gen_line_comment(lines, lnum, append)
@@ -51,7 +14,7 @@ local function gen_line_comment(lines, lnum, append)
   api.nvim_buf_set_lines(0, lnum - 1, lnum + #lines - 1, true, lines)
 end
 
-local function gen_comment()
+function doxycpp.gen_annoment()
   local mode = fn.mode()
   local cm_lines
   local enable_mode = { 'n', 'v', 'V', '' }
@@ -64,7 +27,7 @@ local function gen_comment()
   if mode == 'n' then
     local lnum = fn.line('.')
     local cur_line = api.nvim_get_current_line()
-    cm_lines = doxycpp.annotacomment(cur_line)
+    cm_lines = anno.annotacomment(cur_line)
 
     if cm_lines ~= nil then
       gen_line_comment(cm_lines, lnum, true)
@@ -72,7 +35,7 @@ local function gen_comment()
 
       vim.cmd('startinsert!')
     else
-      cm_lines = vcomment(lnum, lnum)
+      cm_lines = comm.gen_comment(lnum, lnum)
       gen_line_comment(cm_lines, lnum, false)
     end
     return
@@ -83,22 +46,14 @@ local function gen_comment()
     local line_start = vim.fn.getpos('v')[2]
     local line_end = vim.fn.getcurpos("'>")[2]
 
-    cm_lines = vcomment(line_start, line_end)
+    cm_lines = comm.gen_comment(line_start, line_end)
     gen_line_comment(cm_lines, line_start)
     api.nvim_feedkeys(api.nvim_replace_termcodes("<ESC>", true, false, true), "n", true)
   end
 end
 
--- create command
-local group = api.nvim_create_augroup("DoxyCpp", {clear = true})
+function doxycpp.setup(config)
+  config = config or {}
+end
 
-api.nvim_create_autocmd("filetype", {
-  pattern = "cpp",
-  group = group,
-  callback = function()
-    api.nvim_create_user_command("DoxyCpp", function()
-      gen_comment()
-    end, {})
-  end
-})
-
+return doxycpp
