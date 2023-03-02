@@ -39,7 +39,8 @@ function M.annotation()
   for _, v in pairs(args_list) do
     print(v)
     table.insert(res, v .. string.rep(' ', max_arg_len + 8 - #v))
-    print(string.rep(' ', max_arg_len + 8 - #v))
+    print(string.rep('a', max_arg_len + 8 - #v))
+    print(max_arg_len + 8 - #v)
   end
 
   if ret ~= 'void' then
