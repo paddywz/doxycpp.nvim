@@ -22,10 +22,16 @@ function doxycpp:register(parse)
 end
 
 function doxycpp.annotacomment(line)
+  local flag = false
   for _, p in pairs(doxycpp.handler) do
     if p.match(line) == true then
+      flag = true
       return p.annotation()
     end
+  end
+
+  if flag == false then
+    return { line }
   end
 end
 
