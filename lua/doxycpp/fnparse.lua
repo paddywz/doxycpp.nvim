@@ -21,7 +21,6 @@ function M.annotation()
 
   local res = {}
   table.insert(res, M.prefix .. "/** function " .. fun_name)
-  table.insert(res, M.prefix .. " * @brief ")
 
   local args_list = {}
   local max_arg_len = 0
@@ -35,15 +34,20 @@ function M.annotation()
       table.insert(args_list, M.prefix .. ' * @param ' .. arg)
     end
   end
-
+ 
+  -- set format
   local space_len = 8
+  local rep_space_len = max_arg_len + string.len(' * @param ') - string.len(' * @brief') + space_len
+  table.insert(res, M.prefix .. " * @brief " .. string.rep(' ', rep_space_len))
+
   for _, v in pairs(args_list) do
     local arg_len = #v - string.len(' * @param ') - #M.prefix
-    table.insert(res, v .. string.rep(' ', max_arg_len + space_len - arg_len))
+    rep_space_len = max_arg_len + space_len - arg_len
+    table.insert(res, v .. string.rep(' ', rep_space_len))
   end
 
   if ret ~= 'void' then
-    local rep_space_len = max_arg_len + string.len(' * @param ') - string.len(' * @return') + space_len
+    rep_space_len = max_arg_len + string.len(' * @param ') - string.len(' * @return') + space_len
     table.insert(res, M.prefix .. " * @return" .. string.rep(' ', rep_space_len))
   end
   table.insert(res, M.prefix .. " */")
