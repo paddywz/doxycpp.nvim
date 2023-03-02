@@ -28,8 +28,8 @@ function M.annotation()
   if args ~= nil then
     local args_tbl = vim.split(args, ',', { trimempty = true })
     for _, v in pairs(args_tbl) do
-      v:gsub('^%s+', '')
-      v:gsub('%s+$', '')
+      v = v:gsub('^%s+', '')
+      v = v:gsub('%s+$', '')
       print(v)
       local arg = v:match(' [*]*([a-zA-Z_]+[a-zA-Z0-9]*)') or ""
       max_arg_len = #arg > max_arg_len and #arg or max_arg_len
