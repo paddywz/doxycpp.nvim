@@ -21,7 +21,7 @@ function M.annotation()
 
   local res = {}
   table.insert(res, M.prefix .. "/** function " .. fun_name)
-  table.insert(res, M.prefix .. " * @brief")
+  table.insert(res, M.prefix .. " * @brief ")
 
   local args_list = {}
   local max_arg_len = 0
