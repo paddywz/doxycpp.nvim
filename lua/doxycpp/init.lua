@@ -72,7 +72,7 @@ local function gen_comment()
       print(api.nvim_buf_get_lines(0, lnum, lnum + 1, true)[1])
       print(#api.nvim_buf_get_lines(0, lnum, lnum + 1, true)[1] + 1)
 
-      vim.cmd('startinsert')
+      -- vim.cmd('startinsert')
     else
       cm_lines = vcomment(lnum, lnum)
       gen_line_comment(cm_lines, lnum, false)
