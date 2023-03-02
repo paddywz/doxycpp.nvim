@@ -1,4 +1,5 @@
 local objparse = require('doxycpp.objparse')
+local fnparse = require('doxycpp.fnparse')
 
 local M = {}
 
@@ -30,6 +31,7 @@ end
 
 -- parse struct class enum
 doxycpp:register(objparse)
+doxycpp:register(fnparse)
 
 setmetatable(M, doxycpp)
 
