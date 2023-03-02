@@ -43,7 +43,8 @@ function M.annotation()
   end
 
   if ret ~= 'void' then
-    table.insert(res, M.prefix .. " * @return")
+    local rep_space_len = max_arg_len + string.len(' * @param ') - string.len(' * @return') + space_len
+    table.insert(res, M.prefix .. " * @return" .. string.rep(' ', rep_space_len))
   end
   table.insert(res, M.prefix .. " */")
 
