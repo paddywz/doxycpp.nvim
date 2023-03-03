@@ -1,5 +1,5 @@
-local objparse = require('doxycpp.objparse')
-local fnparse = require('doxycpp.fnparse')
+local objparse = require('doxycpp.parse.objparse')
+local fnparse = require('doxycpp.parse.fnparse')
 
 local annotation = {}
 local M = {}
