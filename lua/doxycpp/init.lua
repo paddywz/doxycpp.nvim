@@ -54,6 +54,10 @@ function doxycpp.visual()
 end
 
 function doxycpp:gen_annoment()
+  if vim.bo.filetype ~= 'cpp' then
+    vim.notify("doxycpp only works for cpp.")
+    return
+  end
   local mode = fn.mode()
   local enable_mode = { 'n', 'v', 'V', '' }
 
