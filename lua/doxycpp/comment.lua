@@ -19,7 +19,7 @@ local function cancel_comment(lines)
   for _, v in pairs(lines) do
     local newline = ""
     if #v > 0 then
-      newline = v:gsub('// ', '')
+      newline = v:gsub('// ', '', 1)
     end
     table.insert(res, newline)
   end
