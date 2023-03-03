@@ -46,7 +46,7 @@ function comm.gen_comment(line_start, line_end)
   end
 
   if has_no_comm == true then
-    res = add_comment(lines)
+    res = add_comment(lines, min_spaces)
   else
     res = cancel_comment(lines)
   end
