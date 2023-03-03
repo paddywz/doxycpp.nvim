@@ -7,7 +7,7 @@
 - 🚀Fast
 - ❄️Minimalist and light weight
 - ✨comment or cancel comment for the code selected when in visual mode
-- 🧨generate doxygen style annotations when the cursor is on the first line of function declaration or class's and so on.
+- 🧨generate doxygen style annotations when the cursor is on the first line of function declaration, class's, etc.
 
 # Install
 - lazy.nvim
