@@ -6,6 +6,7 @@
 # Features
 - 🚀Fast
 - ❄️Minimalist and light weight
+- 🎈Independent, not depends on any third-party plugins
 - ✨comment or cancel comment for the code selected when in visual mode
 - 🧨generate doxygen style annotations when the cursor is on the first line of function declaration, class's, etc.
 
