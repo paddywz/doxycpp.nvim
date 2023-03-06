@@ -16,13 +16,11 @@ end
 -- add comment
 local function add_comment(lines, min_spaces)
   local sep = get_sep() .. ' '
-  print(sep)
   local res = {}
   for _, v in pairs(lines) do
     local newline = ""
     if #v > 0 then
       newline = string.rep(' ', min_spaces) .. sep .. v:sub(min_spaces + 1)
-      print(newline)
     end
     table.insert(res, newline)
   end
@@ -52,6 +50,7 @@ function comm.gen_comment(line_start, line_end)
 
   local min_spaces = 300
   for _, v in pairs(lines) do
+    print(v)
     if #v > 0 and v:match('^%s*' .. get_sep() .. ' ') == nil then
       has_no_comm = true
     end
