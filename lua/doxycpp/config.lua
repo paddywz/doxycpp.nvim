@@ -1,6 +1,6 @@
 local M = {}
 
-M.config = {
+local default_config = {
   comment = {
     ['c'] = '//',
     ['cpp'] = '//',
@@ -11,7 +11,7 @@ M.config = {
 }
 
 function M:init(opts)
-  -- self.config = vim.tbl_deep_extend('force', self.config, opts or {})
+  self.config = vim.tbl_deep_extend('force', default_config, opts or {})
 end
 
 return M

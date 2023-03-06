@@ -21,12 +21,12 @@ function annotation:register(parse)
 end
 
 function annotation.annotacomment(line)
-  if vim.bo.filetype ~= 'cpp' then
-    vim.notify("Annotation only works for cpp now.")
-    return
-  end
   for _, p in pairs(annotation.handler) do
     if p.match(line) == true then
+      if vim.bo.filetype ~= 'cpp' then
+        vim.notify("Annotation only works for cpp now.")
+        return
+      end
       return p.annotation()
     end
   end

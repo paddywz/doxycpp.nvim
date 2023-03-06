@@ -1,4 +1,4 @@
-local config = require('doxycpp.config').comment
+local config = require('doxycpp.config').config.comment
 local comm = {}
 local fn = vim.fn
 
