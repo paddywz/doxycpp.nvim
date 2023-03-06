@@ -2,7 +2,7 @@ local config = require('doxycpp.config').config.comment
 local comm = {}
 local fn = vim.fn
 
-local magic_char = { '%^', '%$', '%(', ')', '%%', '%.', '%[', '%]', '%+', '%-', '%*', '%?' }
+local magic_char = { '%^', '%$', '%(', '%)', '%%', '%.', '%[', '%]', '%+', '%-', '%*', '%?' }
 
 -- get comment seperator of different filetype
 local function get_sep()
