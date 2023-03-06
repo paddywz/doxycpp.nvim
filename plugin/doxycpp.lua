@@ -5,7 +5,6 @@ local doxycpp = require('doxycpp')
 local group = api.nvim_create_augroup("DoxyCpp", {clear = true})
 
 api.nvim_create_autocmd("filetype", {
-  pattern = "cpp",
   group = group,
   callback = function()
     api.nvim_create_user_command("DoxyCpp", function()

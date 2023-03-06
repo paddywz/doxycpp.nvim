@@ -13,6 +13,16 @@ function doxycpp.__newindex(table, key, val)
   rawset(table, key, val)
 end
 
+local default_config = {
+  comment = {
+    ['c'] = '//',
+    ['cpp'] = '//',
+    ['lua'] = '--',
+    ['cmake'] = '#',
+    ['python'] = '#',
+  }
+}
+
 -- generate line comment
 local function gen_line_comment(lines, lnum, append)
   append = append or false
@@ -23,6 +33,7 @@ local function gen_line_comment(lines, lnum, append)
   api.nvim_buf_set_lines(0, lnum - 1, lnum + #lines - 1, true, lines)
 end
 
+-- normal mode
 function doxycpp.normal()
   local lnum = fn.line('.')
   local cur_line = api.nvim_get_current_line()
@@ -44,6 +55,7 @@ function doxycpp.normal()
   end
 end
 
+-- visual mode
 function doxycpp.visual()
   local line_start = vim.fn.getpos('v')[2]
   local line_end = vim.fn.getcurpos("'>")[2]
@@ -54,10 +66,6 @@ function doxycpp.visual()
 end
 
 function doxycpp:gen_annoment()
-  if vim.bo.filetype ~= 'cpp' then
-    vim.notify("doxycpp only works for cpp.")
-    return
-  end
   local mode = fn.mode()
   local enable_mode = { 'n', 'v', 'V', '' }
 
@@ -76,8 +84,8 @@ function doxycpp:gen_annoment()
   end
 end
 
-function doxycpp.setup(config)
-  config = config or {}
+function doxycpp.setup(opts)
+  doxycpp.config = vim.tbl_deep_extend('force', default_config, opts or {})
 end
 
 return setmetatable({}, doxycpp)

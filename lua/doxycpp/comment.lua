@@ -1,12 +1,26 @@
+local config = require('doxycpp').config.comment
 local comm = {}
 local fn = vim.fn
+
+-- get comment seperator of different filetype
+local function get_sep()
+  local cur_ft = vim.bo.filetype
+  local sep = config[cur_ft]
+  if sep == nil then
+    vim.notify("Don't support this filetype. Please check your configuration.")
+    return
+  end
+  return sep
+end
+
 -- add comment
 local function add_comment(lines, min_spaces)
+  local sep = get_sep() .. ' '
   local res = {}
   for _, v in pairs(lines) do
     local newline = ""
     if #v > 0 then
-      newline = string.rep(' ', min_spaces) .. '// ' .. v:sub(min_spaces + 1)
+      newline = string.rep(' ', min_spaces) .. sep .. v:sub(min_spaces + 1)
     end
     table.insert(res, newline)
   end
@@ -15,11 +29,12 @@ end
 
 -- cancel comment
 local function cancel_comment(lines)
+  local sep = get_sep() .. ' '
   local res = {}
   for _, v in pairs(lines) do
     local newline = ""
     if #v > 0 then
-      newline = v:gsub('// ', '', 1)
+      newline = v:gsub(sep, '', 1)
     end
     table.insert(res, newline)
   end
