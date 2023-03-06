@@ -8,12 +8,19 @@ local magic_char = { '%^', '%$', '%(', '%)', '%%', '%.', '%[', '%]', '%+', '%-',
 local function get_sep()
   local cur_ft = vim.bo.filetype
   local sep = config[cur_ft]
+  local match_sep = nil
   if sep == nil then
-    vim.notify("Don't support this filetype. Please check your configuration.")
+    vim.log.levels.ERROR("Don't support this filetype. Please check your configuration.")
     return
   end
 
-  return sep
+  for _, c in pairs(magic_char) do
+    if sep:match(c) ~= nil then
+      match_sep = sep:gsub(c, '%' .. c)
+    end
+  end
+
+  return sep, match_sep
 end
 
 -- add comment
@@ -32,14 +39,8 @@ end
 
 -- cancel comment
 local function cancel_comment(lines)
-  local sep = get_sep() .. ' '
-  -- check magic chars
-  for _, c in pairs(magic_char) do
-    print(c)
-    if sep:match(c) ~= nil then
-      sep = sep:gsub(c, '%' .. c)
-    end
-  end
+  local _, sep = get_sep()
+  sep = sep .. ' '
 
   local res = {}
   for _, v in pairs(lines) do
@@ -60,7 +61,9 @@ function comm.gen_comment(line_start, line_end)
   local has_no_comm = false
 
   local min_spaces = 300
-  local sep = get_sep() .. ''
+  local _, sep = get_sep()
+  sep = sep .. ' '
+
   for _, v in pairs(lines) do
     if #v > 0 and v:match('^%s*' .. sep) == nil then
       has_no_comm = true
