@@ -59,6 +59,7 @@ vim.api.nvim_set_keymap('v', 'gcc', '<cmd>Doxycpp<CR', { noremap = true, silent 
 # Show
 <details>
 <summary>comment showcase</summary>
+
 ![doxycpp_two](https://user-images.githubusercontent.com/101847923/223134410-653a388d-9d36-42cb-820c-bb11fedf0989.gif)
 
 </details>
