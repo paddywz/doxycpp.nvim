@@ -1,6 +1,7 @@
 local api, fn = vim.api, vim.fn
 local anno = require('doxycpp.annotation')
 local comm = require('doxycpp.comment')
+local conf = require('doxycpp.config')
 
 local doxycpp = {}
 
@@ -85,7 +86,7 @@ function doxycpp:gen_annoment()
 end
 
 function doxycpp.setup(opts)
-  doxycpp.config = vim.tbl_deep_extend('force', default_config, opts or {})
+  conf.config = vim.tbl_deep_extend('force', default_config, opts or {})
 end
 
 return setmetatable({}, doxycpp)
