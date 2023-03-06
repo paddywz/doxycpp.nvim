@@ -53,15 +53,13 @@ require('doxycpp').setup({
 # Keymap
 ```lua
 vim.api.nvim_set_keymap('n', 'gcc', '<cmd>Doxycpp<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('v', 'gcc', '<cmd>Doxycpp<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('v', 'gcc', '<cmd>Doxycpp<CR', { noremap = true, silent = true })
 ```
 
 # Show
 <details>
 <summary>comment showcase</summary>
 ![doxycpp_two](https://user-images.githubusercontent.com/101847923/223134410-653a388d-9d36-42cb-820c-bb11fedf0989.gif)
-
-![doxycpp_four](https://user-images.githubusercontent.com/101847923/223136579-a170fae3-3918-4fa2-8a84-e0fadc0ce188.gif)
 
 </details>
 
