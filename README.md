@@ -14,7 +14,7 @@
 - lazy.nvim
 ``` lua
 require('lazy').setup({
-  { 'paddywz/doxycpp.nvim', ft = 'cpp', config = function
+  { 'paddywz/doxycpp.nvim', ft = { your filetype }, config = function
     require('doxycpp').setup()
   end},
 })
@@ -22,7 +22,7 @@ require('lazy').setup({
 - packer.nvim
 ``` lua
 use({
-  { 'paddywz/doxycpp.nvim', ft = 'cpp', config = function
+  { 'paddywz/doxycpp.nvim', ft = { your filetype }, config = function
     require('doxycpp').setup()
   end},
 })
