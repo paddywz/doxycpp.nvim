@@ -13,13 +13,6 @@ local function get_sep()
     return
   end
 
-  for _, c in pairs(magic_char) do
-    print(c)
-    if sep:match(c) ~= nil then
-      sep = sep:gsub(c, '%' .. c)
-    end
-  end
-
   return sep
 end
 
@@ -40,6 +33,14 @@ end
 -- cancel comment
 local function cancel_comment(lines)
   local sep = get_sep() .. ' '
+  -- check magic chars
+  for _, c in pairs(magic_char) do
+    print(c)
+    if sep:match(c) ~= nil then
+      sep = sep:gsub(c, '%' .. c)
+    end
+  end
+
   local res = {}
   for _, v in pairs(lines) do
     local newline = ""
