@@ -54,7 +54,7 @@ function comm.gen_comment(line_start, line_end)
     print(v)
     print(sep)
     print(#v)
-    print(v:match('^%s*' .. sep))
+    print(tostring(v:match('^%s*' .. sep) == nil))
     if #v > 0 and v:match('^%s*' .. sep) == nil then
       print("enter has_no_comm")
       has_no_comm = true
