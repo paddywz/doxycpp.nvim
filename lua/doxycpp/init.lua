@@ -76,7 +76,7 @@ function doxycpp:gen_annoment()
 end
 
 function doxycpp.setup(opts)
-  conf:init(opts) 
+  conf:init(opts)
 end
 
 return setmetatable({}, doxycpp)
