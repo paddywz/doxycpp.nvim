@@ -1,7 +1,7 @@
 local api, fn = vim.api, vim.fn
 local anno = require('doxycpp.annotation')
 local comm = require('doxycpp.comment')
--- local conf = require('doxycpp.config')
+local conf = require('doxycpp.config')
 
 local doxycpp = {}
 
@@ -13,16 +13,6 @@ function doxycpp.__newindex(table, key, val)
   end
   rawset(table, key, val)
 end
-
-local default_config = {
-  comment = {
-    ['c'] = '//',
-    ['cpp'] = '//',
-    ['lua'] = '--',
-    ['cmake'] = '#',
-    ['python'] = '#',
-  }
-}
 
 -- generate line comment
 local function gen_line_comment(lines, lnum, append)
@@ -86,7 +76,7 @@ function doxycpp:gen_annoment()
 end
 
 function doxycpp.setup(opts)
-  -- conf.config = vim.tbl_deep_extend('force', default_config, opts or {})
+  conf:init(opts) 
 end
 
 return setmetatable({}, doxycpp)

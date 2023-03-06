@@ -1,11 +1,11 @@
--- local config = require('doxycpp').config.comment
+local config = require('doxycpp.config').comment
 local comm = {}
 local fn = vim.fn
 
 -- get comment seperator of different filetype
 local function get_sep()
   local cur_ft = vim.bo.filetype
-  local sep = '//'
+  local sep = config[cur_ft]
   if sep == nil then
     vim.notify("Don't support this filetype. Please check your configuration.")
     return
