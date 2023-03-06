@@ -68,7 +68,6 @@ vim.api.nvim_set_keymap('v', 'gcc', '<cmd>Doxycpp<CR>', { noremap = true, silent
 
 ![doxycpp_three](https://user-images.githubusercontent.com/101847923/223135266-3de3921b-3e37-4d31-b429-47d2ee6af7bb.gif)
 </details>
-## annotation
 
 # ToDo
 - 🌟make it work when the function declaration is crrosing multiple lines.
