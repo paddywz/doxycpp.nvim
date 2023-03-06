@@ -4,7 +4,7 @@ M.config = {
   comment = {
     ['c'] = '//',
     ['cpp'] = '//',
-    -- ['lua'] = '--',
+    ['lua'] = '--',
     ['cmake'] = '#',
     ['python'] = '#',
   }

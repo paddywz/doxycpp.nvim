@@ -2,6 +2,8 @@ local config = require('doxycpp.config').config.comment
 local comm = {}
 local fn = vim.fn
 
+local magic_char = { '%^', '%$', '%(', ')', '%%', '%.', '%[', '%]', '%+', '%-', '%*', '%?' }
+
 -- get comment seperator of different filetype
 local function get_sep()
   local cur_ft = vim.bo.filetype
@@ -10,6 +12,13 @@ local function get_sep()
     vim.notify("Don't support this filetype. Please check your configuration.")
     return
   end
+
+  for _, c in pairs(magic_char) do
+    if sep:match(c) ~= nil then
+      sep = sep:gsub(c, '%' .. c)
+    end
+  end
+
   return sep
 end
 
