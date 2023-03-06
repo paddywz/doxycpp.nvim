@@ -8,7 +8,7 @@ local magic_char = { '%^', '%$', '%(', '%)', '%%', '%.', '%[', '%]', '%+', '%-',
 local function get_sep()
   local cur_ft = vim.bo.filetype
   local sep = config[cur_ft]
-  local match_sep = nil
+  local match_sep = sep
   if sep == nil then
     vim.log.levels.ERROR("Don't support this filetype. Please check your configuration.")
     return
