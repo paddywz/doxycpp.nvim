@@ -14,6 +14,7 @@ local function get_sep()
   end
 
   for _, c in pairs(magic_char) do
+    print(c)
     if sep:match(c) ~= nil then
       sep = sep:gsub(c, '%' .. c)
     end
