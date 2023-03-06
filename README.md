@@ -44,7 +44,9 @@ use({
 the key in table comment is filetype, value is your custom comment symbol
 ```
 require('doxycpp').setup({
-  -- your configuration
+  comment = {
+    ['java'] = '//',
+  }
 })
 ```
 
