@@ -27,8 +27,26 @@ use({
   end},
 })
 ```
-# Config
-Don't need to configurate currently.
+# Cofiguration
+### default configuration
+```lua
+{
+  comment = {
+    ['c'] = '//',
+    ['cpp'] = '//',
+    ['lua'] = '--',
+    ['python'] = '#',
+    ['cmake'] = '#',
+  }
+}
+```
+### custom your comment symbol
+the key in table comment is filetype, value is your custom comment symbol
+```
+require('doxycpp').setup({
+  -- your configuration
+})
+```
 
 # Keymap
 ```lua
@@ -37,10 +55,10 @@ vim.api.nvim_set_keymap('v', 'gcc', '<cmd>Doxycpp<CR>', { noremap = true, silent
 ```
 
 # Show
-## visual mode
-![doxycpp_two](https://user-images.githubusercontent.com/101847923/222457788-60f356b3-e3e2-43c4-ac1a-44371a876088.gif)
-# normal mode
-![doxycpp_three](https://user-images.githubusercontent.com/101847923/222458974-bb99d44d-f129-4f3f-9445-665b41d7baa8.gif)
+## comment
+
+
+## annotation
 
 # ToDo
 - 🌟make it work when the function declaration is crrosing multiple lines.
