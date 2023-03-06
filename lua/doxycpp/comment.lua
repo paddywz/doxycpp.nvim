@@ -52,6 +52,7 @@ function comm.gen_comment(line_start, line_end)
   for _, v in pairs(lines) do
     print(v)
     if #v > 0 and v:match('^%s*' .. get_sep() .. ' ') == nil then
+      print("enter has_no_comm")
       has_no_comm = true
     end
 
