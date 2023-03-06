@@ -52,7 +52,6 @@ function comm.gen_comment(line_start, line_end)
   local sep = get_sep() .. ''
   for _, v in pairs(lines) do
     if #v > 0 and v:match('^%s*' .. sep) == nil then
-      print("enter has_no_comm")
       has_no_comm = true
     end
 
