@@ -51,10 +51,6 @@ function comm.gen_comment(line_start, line_end)
   local min_spaces = 300
   local sep = get_sep() .. ''
   for _, v in pairs(lines) do
-    print(v)
-    print(sep)
-    print(#v)
-    print(tostring(v:match('^%s*' .. sep) == nil))
     if #v > 0 and v:match('^%s*' .. sep) == nil then
       print("enter has_no_comm")
       has_no_comm = true
