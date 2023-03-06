@@ -16,6 +16,7 @@ end
 -- add comment
 local function add_comment(lines, min_spaces)
   local sep = get_sep() .. ' '
+  vim.notify(sep)
   local res = {}
   for _, v in pairs(lines) do
     local newline = ""
