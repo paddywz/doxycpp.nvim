@@ -50,7 +50,7 @@ function comm.gen_comment(line_start, line_end)
 
   local min_spaces = 300
   for _, v in pairs(lines) do
-    if #v > 0 and v:match('^%s*// ') == nil then
+    if #v > 0 and v:match('^%s*' .. get_sep() .. ' ') == nil then
       has_no_comm = true
     end
 
