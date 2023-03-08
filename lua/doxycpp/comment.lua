@@ -25,7 +25,12 @@ end
 
 -- add comment
 local function add_comment(lines, min_spaces)
-  local sep = get_sep() .. ' '
+  local sep = get_sep()
+  if sep == nil then
+    return
+  end
+
+  sep = sep .. ' '
   local res = {}
   for _, v in pairs(lines) do
     local newline = ""
@@ -40,8 +45,11 @@ end
 -- cancel comment
 local function cancel_comment(lines)
   local _, sep = get_sep()
-  sep = sep .. ' '
+  if sep == nil then
+    return
+  end
 
+  sep = sep .. ' '
   local res = {}
   for _, v in pairs(lines) do
     local newline = ""
@@ -57,7 +65,7 @@ end
 function comm.gen_comment(line_start, line_end)
   local lines = fn.getline(line_start, line_end)
 
-  local res = {}
+  local res = nil
   local has_no_comm = false
 
   local min_spaces = 300

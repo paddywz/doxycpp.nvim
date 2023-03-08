@@ -42,7 +42,10 @@ function doxycpp.normal()
     vim.cmd('startinsert!')
   else
     cm_lines = comm.gen_comment(lnum, lnum)
-    gen_line_comment(cm_lines, lnum, false)
+
+    if cm_lines ~= nil then
+      gen_line_comment(cm_lines, lnum, false)
+    end
   end
 end
 
@@ -52,7 +55,9 @@ function doxycpp.visual()
   local line_end = vim.fn.getcurpos("'>")[2]
 
   local cm_lines = comm.gen_comment(line_start, line_end)
-  gen_line_comment(cm_lines, line_start)
+  if cm_lines ~= nil then
+    gen_line_comment(cm_lines, line_start)
+  end
   api.nvim_feedkeys(api.nvim_replace_termcodes("<ESC>", true, false, true), "n", true)
 end
 
