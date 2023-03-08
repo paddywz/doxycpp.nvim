@@ -13,10 +13,9 @@ end
 
 function M.annotation()
   local fun_dec = M.fun_dec
-  local prexif = M.prefix
 
   local ret = fun_dec:match('%w+')
-  local fun_name = fun_dec:match(ret .. ' ' .. '(%w*)')
+  local fun_name = fun_dec:match(ret .. ' ' .. '([a-zA-Z0-9_]+)')
   local args = fun_dec:match('%((.+)%)')
 
   local res = {}
