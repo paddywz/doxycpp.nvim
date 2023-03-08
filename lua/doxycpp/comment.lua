@@ -10,7 +10,7 @@ local function get_sep()
   local sep = config[cur_ft]
   local match_sep = sep
   if sep == nil then
-    vim.log.levels.ERROR("Don't support this filetype. Please check your configuration.")
+    vim.notify("Don't support this filetype. Please check your configuration.")
     return
   end
 
