@@ -53,6 +53,8 @@ end
 function doxycpp.visual()
   local line_start = vim.fn.getpos('v')[2]
   local line_end = vim.fn.getcurpos("'>")[2]
+  print("line_start: " .. line_start)
+  print("line_end: " .. line_end)
 
   local cm_lines = comm.gen_comment(line_start, line_end)
   if cm_lines ~= nil then
