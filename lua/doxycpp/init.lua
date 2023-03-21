@@ -63,7 +63,7 @@ function doxycpp.visual()
   if cm_lines ~= nil then
     gen_line_comment(cm_lines, line_start)
   end
-  -- api.nvim_feedkeys(api.nvim_replace_termcodes("<ESC>", true, false, true), "n", true)
+  api.nvim_feedkeys(api.nvim_replace_termcodes("<ESC>", true, false, true), "n", true)
 end
 
 function doxycpp:gen_annoment()
