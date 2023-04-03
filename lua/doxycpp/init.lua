@@ -24,10 +24,38 @@ local function gen_line_comment(lines, lnum, append)
   api.nvim_buf_set_lines(0, lnum - 1, lnum + #lines - 1, true, lines)
 end
 
+-- get current line or complete line when only having left parenthesis
+local function get_complete_line()
+  local lnum = fn.line('.')
+  local cur_line = api.nvim_get_current_line()
+
+  if cur_line:match('%(') == nil then
+    return cur_line
+  end
+
+  if cur_line:match('%(.*%)') ~= nil then
+    return cur_line
+  end
+
+  local lines = api.nvim_buf_get_lines(0, lnum, -1, true)
+  for _, line in pairs(lines) do
+    line:gsub('^%s+', '')
+    line:gsub('%s+$', '')
+    cur_line = cur_line + line
+    if line:match('%)') ~= nil then
+      return cur_line
+    end
+  end
+
+  return cur_line
+
+end
+
 -- normal mode
 function doxycpp.normal()
   local lnum = fn.line('.')
-  local cur_line = api.nvim_get_current_line()
+  local cur_line = get_complete_line()
+
   local cm_lines = anno.annotacomment(cur_line)
 
   local preline = api.nvim_buf_get_lines(0, lnum - 2, lnum - 1, true)[1]

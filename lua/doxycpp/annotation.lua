@@ -34,6 +34,7 @@ end
 
 -- parse struct class enum
 annotation:register(objparse)
+-- parse function
 annotation:register(fnparse)
 
 setmetatable(M, annotation)
