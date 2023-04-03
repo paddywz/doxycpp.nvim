@@ -41,7 +41,7 @@ local function get_complete_line()
   for _, line in pairs(lines) do
     line:gsub('^%s+', '')
     line:gsub('%s+$', '')
-    cur_line = cur_line + line
+    cur_line = cur_line .. line
     if line:match('%)') ~= nil then
       return cur_line
     end
