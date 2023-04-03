@@ -71,7 +71,7 @@ vim.api.nvim_set_keymap('v', 'gcc', '<cmd>Doxycpp<CR', { noremap = true, silent 
 </details>
 
 # ToDo
-- 🌟make it work when the function declaration is crrosing multiple lines.
+- ~~🌟make it work when the function declaration is crrosing multiple lines.~~
 
 # Note
 - 🌒Don't work on constructor function unfortunately. But I think we don't need to annotate ctor most of the time.
